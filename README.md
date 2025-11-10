@@ -99,39 +99,6 @@ GreenSync features an **eco-modern** design aesthetic:
 - **UI Elements**: Rounded components, subtle gradients, and smooth animations
 - **Tone**: Clean, futuristic, and nature-inspired
 
----
-
-## 🔧 Configuration
-
-### API Keys
-
-To enable AI insights functionality, you'll need a **Google Gemini API key**:
-
-1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Generate an API key
-3. Update the API key in `script.js` (line ~20):
-   ```javascript
-   const apiKey = "YOUR_GEMINI_API_KEY_HERE";
-   ```
-
-### Firebase Setup (for Community Chat)
-
-The EcoBot Community Chat uses Firebase Realtime Database. The current configuration points to a demo Firebase project. For production use:
-
-1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com)
-2. Enable Realtime Database
-3. Update `chat.js` with your Firebase configuration:
-   ```javascript
-   const firebaseConfig = {
-     apiKey: "YOUR_API_KEY",
-     authDomain: "YOUR_AUTH_DOMAIN",
-     databaseURL: "YOUR_DATABASE_URL",
-     projectId: "YOUR_PROJECT_ID",
-     // ... other config
-   };
-   ```
-
----
 
 ## 📁 Project Structure
 
