@@ -33,37 +33,6 @@ GreenSync is a browser-based ClimateTech web application built to help organizat
 - **Google Gemini AI** - AI-powered sustainability insights
 - **Firebase Realtime Database** - Community chat functionality
 
----
-
-## 🚀 Installation
-
-1. **Clone or download** this repository:
-   ```bash
-   git clone <repository-url>
-   cd GreenSync
-   ```
-
-2. **Open the project** in your preferred code editor or IDE.
-
-3. **No build process required** - Simply open `index.html` in a modern web browser, or use a local development server:
-   ```bash
-   # Using Python 3
-   python -m http.server 8000
-   
-   # Using Node.js (http-server)
-   npx http-server
-   
-   # Using VS Code Live Server extension
-   # Right-click index.html → Open with Live Server
-   ```
-
-4. **Access the application**:
-   - Local: `http://localhost:8000`
-   - Or open `index.html` directly in your browser
-
----
-
-## 📖 Usage
 
 ### Getting Started
 
@@ -147,9 +116,6 @@ Potential features to expand GreenSync's capabilities:
 ---
 
 ## 👤 Built With
-
-- **AI**: Google Gemini API
-- **Database**: Firebase Realtime Database
 - **Animation**: GSAP (GreenSock Animation Platform)
 - **Styling**: Tailwind CSS
 - **Fonts**: Inter, Urbanist (Google Fonts)
