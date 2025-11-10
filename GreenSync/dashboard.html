@@ -1,0 +1,210 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="GreenSync Dashboard - Monitor sustainability metrics, track carbon footprint, and get AI-powered environmental insights."/>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>"/>
+        <title>GreenSync Dashboard - Sustainability Intelligence</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      
+        <!-- Firebase SDKs -->
+        <!-- Firebase SDKs -->
+        <!-- Firebase SDKs (compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+<style>
+  :root {
+    --greensync-primary: #B1FD28;
+    --greensync-primary-dark: #8FD820;
+    --greensync-primary-light: #C4FE4F;
+    --greensync-accent: #22C55E;
+    --greensync-bg-dark: #0F172A;
+    --greensync-bg-card: #1E293B;
+    --greensync-text-primary: #F8FAFC;
+    --greensync-text-secondary: #CBD5E1;
+  }
+  
+  body {
+     font-family: 'Inter', 'Urbanist', sans-serif;
+     background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+   }
+   
+   .greensync-gradient {
+     background: linear-gradient(135deg, var(--greensync-primary) 0%, var(--greensync-accent) 100%);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+   }
+   
+   .card-hover {
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   
+   .card-hover:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 10px 25px rgba(177, 253, 40, 0.15);
+   }
+
+   .hamburger {
+     cursor: pointer;
+     width: 24px;
+     height: 24px;
+     transition: all 0.25s;
+     position: relative;
+   }
+
+   .hamburger-top,
+   .hamburger-middle,
+   .hamburger-bottom {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 24px;
+     height: 2px;
+     background: white;
+     border-radius: 2%;
+     transform: rotate(0);
+     transition: all 0.5s;
+   }
+
+   .hamburger-middle {
+     transform: translateY(7px);
+   }
+
+   .hamburger-bottom {
+     transform: translateY(14px);
+   }
+
+   .open {
+     transform: rotate(90deg);
+     transform: translateY(0px);
+   }
+
+   .open .hamburger-top {
+     transform: rotate(45deg) translateY(6px) translate(6px);
+   }
+
+   .open .hamburger-middle {
+     display: none;
+   }
+
+   .open .hamburger-bottom {
+     transform: rotate(-45deg) translateY(6px) translate(-6px);
+   }
+ </style>
+
+    </head>   
+        <header class="max-w-7xl mx-auto px-6 sm:px-10 py-6 flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+           <i class="fas fa-leaf text-[#B1FD28] text-2xl"></i>
+           <span class="text-white font-bold text-xl tracking-tight" style="font-family: 'Urbanist', sans-serif;">GreenSync</span>
+          </div>
+          <nav class="bg-[#1E293B] backdrop-blur-sm md:block hidden p-4 max-w-md px-10 border border-[#334155] rounded-full shadow-lg">
+           <ul class="hidden md:flex space-x-10 font-medium text-sm text-white/80">
+            <li>
+             <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-1" href="index.html">
+              <i class="fas fa-home text-xs"></i> Home
+             </a>
+            </li>
+            <li>
+             <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-1" href="about.html">
+              <i class="fas fa-info-circle text-xs"></i> About
+             </a>
+            </li>
+           </ul>
+          </nav>
+
+          <button id="menu-btn" class="block md:hidden hamburger focus:outline-none ml-auto">
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+          </button>
+
+          <div class="md:hidden">
+            <div id="menu" class="absolute right-6 top-20 flex-col hidden items-end bg-white text-black py-8 px-6 space-y-6 rounded-lg shadow-lg z-50">
+              <a class="hover:text-[#B1FD28]" href="index.html">Home</a>
+              <a class="hover:text-[#B1FD28]" href="about.html">About Us</a>
+            </div>
+          </div>
+
+
+        </header>
+    
+      
+<body class="text-white font-sans p-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center gap-3 mb-8">
+      <i class="fas fa-chart-line text-[#B1FD28] text-4xl"></i>
+      <h1 class="text-4xl md:text-5xl font-extrabold greensync-gradient" style="font-family: 'Urbanist', sans-serif;">
+        GreenSync Dashboard
+      </h1>
+    </div>
+
+    <!-- AI Insights Output -->
+    <section class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-6 rounded-2xl mb-10 card-hover shadow-xl shadow-[#B1FD28]/10">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-brain text-[#B1FD28] text-2xl"></i>
+        <h2 class="text-2xl font-bold text-white" style="font-family: 'Urbanist', sans-serif;">
+          AI Sustainability Insights
+        </h2>
+      </div>
+      <div id="aiResponse" class="text-[#CBD5E1] leading-relaxed text-sm sm:text-base p-4 bg-[#0F172A]/50 rounded-lg border border-[#334155]">
+        <i class="fas fa-info-circle text-[#B1FD28] mr-2"></i>
+        No metrics submitted yet. Submit sustainability metrics to get AI-powered insights.
+      </div>
+    </section>
+
+    <!-- Sustainability Metrics Card -->
+    <section class="bg-gradient-to-br from-[#065F46] to-[#047857] border border-[#10B981] text-white rounded-2xl p-6 mb-10 shadow-xl shadow-green-900/30">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-chart-area text-[#B1FD28] text-3xl"></i>
+          <h2 class="text-3xl font-extrabold" style="font-family: 'Urbanist', sans-serif;">
+            Sustainability Metrics
+          </h2>
+        </div>
+        <span class="bg-[#B1FD28] text-black font-bold text-xs px-3 py-1.5 rounded-full shadow-lg animate-pulse">
+          <i class="fas fa-circle text-[6px] mr-1"></i>Live
+        </span>
+      </div>
+      <div id="price-list" class="space-y-3">
+        <p class="text-sm text-green-100 flex items-center gap-2">
+          <i class="fas fa-spinner fa-spin text-[#B1FD28]"></i>Loading sustainability metrics...
+        </p>
+      </div>
+    </section>
+
+    <!-- EcoBot Chat Board -->
+    <div class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-6 rounded-2xl shadow-xl shadow-[#B1FD28]/10 max-w-4xl mx-auto">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-robot text-[#B1FD28] text-2xl"></i>
+        <h3 class="text-white text-2xl font-bold" style="font-family: 'Urbanist', sans-serif;">
+          EcoBot Chat
+        </h3>
+        <span class="bg-[#B1FD28]/20 text-[#B1FD28] text-xs px-2 py-1 rounded-full border border-[#B1FD28]/30">
+          Community
+        </span>
+      </div>
+      <div id="chatBox" class="h-64 overflow-y-auto bg-[#0F172A] border border-[#334155] p-4 mb-4 rounded-lg text-[#CBD5E1] text-sm space-y-2 scrollbar-thin scrollbar-thumb-[#B1FD28] scrollbar-track-[#0F172A]"></div>
+      <div class="flex gap-3">
+        <input id="chatInput" type="text" placeholder="Ask EcoBot about sustainability, carbon reduction, or renewable energy..." class="flex-1 rounded-lg px-4 py-3 text-sm bg-[#0F172A] text-white border border-[#334155] focus:outline-none focus:ring-2 focus:ring-[#B1FD28] focus:border-[#B1FD28] transition-all" />
+        <button id="sendBtn" class="bg-gradient-to-r from-[#B1FD28] to-[#22C55E] hover:from-[#C4FE4F] hover:to-[#34D399] text-black font-bold text-sm px-6 py-3 rounded-lg shadow-lg shadow-[#B1FD28]/25 hover:shadow-[#B1FD28]/40 transition-all flex items-center gap-2">
+          <i class="fas fa-paper-plane"></i>Send
+        </button>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="chat.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="script.js"></script>
+  
+</body>
+</html>
+

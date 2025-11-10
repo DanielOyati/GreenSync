@@ -1,0 +1,485 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta name="description" content="GreenSync - AI-powered sustainability intelligence for a cleaner, smarter planet. Monitor carbon footprint, track renewable energy, and drive environmental impact."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>"/>
+  <title>
+   GreenSync - Sustainability Intelligence Platform
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --greensync-primary: #B1FD28;
+      --greensync-primary-dark: #8FD820;
+      --greensync-primary-light: #C4FE4F;
+      --greensync-accent: #22C55E;
+      --greensync-teal: #14B8A6;
+      --greensync-emerald: #10B981;
+      --greensync-bg-dark: #0F172A;
+      --greensync-bg-card: #1E293B;
+      --greensync-text-primary: #F8FAFC;
+      --greensync-text-secondary: #CBD5E1;
+    }
+    
+    * {
+      transition: all 0.2s ease;
+    }
+    
+    body {
+      font-family: 'Inter', 'Urbanist', sans-serif;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    }
+    
+    .greensync-gradient {
+      background: linear-gradient(135deg, var(--greensync-primary) 0%, var(--greensync-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(177, 253, 40, 0.15);
+    }
+
+    .hamburger {
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .hamburger-top,
+    .hamburger-middle,
+    .hamburger-bottom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: white;
+      border-radius: 2%;
+      transform: rotate(0);
+      transition: all 0.5s;
+    }
+
+    .hamburger-middle {
+      transform: translateY(7px);
+    }
+
+    .hamburger-bottom {
+      transform: translateY(14px);
+    }
+
+    .open {
+      transform: rotate(90deg);
+      transform: translateY(0px);
+    }
+
+    .open .hamburger-top {
+      transform: rotate(45deg) translateY(6px) translate(6px);
+    }
+
+    .open .hamburger-middle {
+      display: none;
+    }
+
+    .open .hamburger-bottom {
+      transform: rotate(-45deg) translateY(6px) translate(-6px);
+    }
+  </style>
+ </head>
+ <body class="bg-[#1B1F1A] text-white">
+  <header class="max-w-7xl mx-auto px-6 sm:px-10 py-6 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <i class="fas fa-leaf text-[#B1FD28] text-2xl"></i>
+      <span class="text-white font-bold text-xl tracking-tight" style="font-family: 'Urbanist', sans-serif;">GreenSync</span>
+    </div>
+  
+    <!-- Desktop Nav -->
+    <nav class="bg-[#1E293B] backdrop-blur-sm md:block hidden p-4 max-w-md px-10 border border-[#334155] rounded-full shadow-lg">
+      <ul class="hidden md:flex space-x-10 font-medium text-sm text-white/80">
+        <li><a class="hover:text-[#B1FD28] transition-colors flex items-center gap-1" href="index.html"><i class="fas fa-home text-xs"></i> Home</a></li>
+        <li><a class="hover:text-[#B1FD28] transition-colors flex items-center gap-1" href="dashboard.html"><i class="fas fa-chart-line text-xs"></i> Dashboard</a></li>
+        <li><a class="hover:text-[#B1FD28] transition-colors flex items-center gap-1" href="about.html"><i class="fas fa-info-circle text-xs"></i> About</a></li>
+      </ul>
+    </nav>
+  
+    <!-- Desktop CTA Button -->
+    <a class="hidden md:inline-block bg-gradient-to-r from-[#B1FD28] to-[#22C55E] text-black font-bold text-sm rounded-full px-6 py-2.5 hover:from-[#C4FE4F] hover:to-[#34D399] shadow-lg shadow-[#B1FD28]/25 hover:shadow-[#B1FD28]/40 transition-all" href="dashboard.html">
+      <i class="fas fa-rocket mr-2"></i>Get Started
+    </a>
+  
+    <!-- Mobile Hamburger Button -->
+    <button id="menu-btn" class="block md:hidden hamburger focus:outline-none ml-auto">
+      <span class="hamburger-top"></span>
+      <span class="hamburger-middle"></span>
+      <span class="hamburger-bottom"></span>
+    </button>
+  
+    <!-- Mobile Menu -->
+    <div class="md:hidden">
+      <div id="menu" class="absolute right-6 top-16 flex-col hidden items-end bg-white text-black py-8 px-6 space-y-6 rounded-lg shadow-lg z-50">
+        <a class="hover:text-[#B1FD28]" href="index.html">Home</a>
+        <a class="hover:text-[#B1FD28]" href="dashboard.html">Dashboard</a>
+        <a class="hover:text-[#B1FD28]" href="about.html">About Us</a>
+      </div>
+    </div>
+  </header>
+  
+  <main class="max-w-7xl mx-auto px-6 sm:px-10">
+    <section class="flex flex-col md:flex-row items-center justify-between gap-20 md:gap-20 mt-10 md:mt-20 md:mb-6">
+      <div class="max-w-xl space-y-6">
+        <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight" style="font-family: 'Urbanist', sans-serif;">
+          Empowering Sustainable
+          <br/>
+          <span class="greensync-gradient">
+          Change
+          </span>
+        </h1>
+        <p class="text-[#CBD5E1] mt-4 text-base sm:text-lg max-w-lg leading-relaxed">
+          <i class="fas fa-seedling text-[#B1FD28] mr-2"></i>
+          AI-powered sustainability intelligence for a cleaner, smarter planet. Monitor your carbon footprint, track renewable energy, and drive data-driven environmental impact.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="dashboard.html" class="bg-gradient-to-r from-[#B1FD28] to-[#22C55E] text-black font-bold rounded-full px-8 py-3 text-sm hover:from-[#C4FE4F] hover:to-[#34D399] shadow-lg shadow-[#B1FD28]/25 hover:shadow-[#B1FD28]/40 transition-all inline-flex items-center">
+            <i class="fas fa-play mr-2"></i>Start Tracking
+          </a>
+          <a href="about.html" class="border-2 border-[#B1FD28] text-[#B1FD28] font-bold rounded-full px-8 py-3 text-sm hover:bg-[#B1FD28]/10 backdrop-blur-sm transition-all inline-flex items-center">
+            <i class="fas fa-info-circle mr-2"></i>Learn More
+          </a>
+        </div>
+      </div>
+      <div class="w-48 sm:w-64 md:w-72">
+      <img alt="Illustration of sustainability dashboard on mobile device showing environmental metrics and analytics" class="ml-auto rounded-2xl shadow-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop"/>
+      </div>
+    </section>
+
+   <section class="mt-20 max-w-5xl mx-auto">
+    <div class="flex items-center gap-3 mb-4">
+      <i class="fas fa-question-circle text-[#B1FD28] text-3xl"></i>
+      <h2 class="text-white animate-on-scroll text-4xl sm:text-5xl leading-[1.80] font-extrabold" style="font-family: 'Urbanist', sans-serif;">
+       Why
+       <span class="greensync-gradient">
+        GreenSync
+       </span>
+       ?
+      </h2>
+    </div>
+    <h3 class="mt-6 text-2xl sm:text-4xl md:text-5xl font-extrabold text-white/95 flex items-center gap-3 flex-wrap">
+     <span class="bg-gradient-to-r from-[#FDE047] to-[#FBBF24] bg-clip-text text-transparent inline-flex items-center gap-2">
+       <i class="fas fa-chart-line"></i>40%
+     </span>
+     <span class="text-white/90 text-xl sm:text-2xl">CARBON REDUCTION</span>
+     <span class="bg-gradient-to-r from-[#B1FD28] to-[#22C55E] bg-clip-text text-transparent inline-flex items-center gap-2">
+       <i class="fas fa-brain"></i>WITH AI
+     </span>
+    </h3>
+    <p class="mt-4 text-[#CBD5E1] max-w-2xl text-base sm:text-lg leading-relaxed">
+     <i class="fas fa-leaf text-[#B1FD28] mr-2"></i>
+     Empowering sustainable change through data-driven insights. Real-time monitoring, AI-powered analysis, and actionable recommendations for a greener future.
+    </p>
+    <div class="mt-20 flex flex-col sm:flex-row sm:space-x-6 space-y-6 sm:space-y-0 max-w-5xl">
+     <div class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] rounded-xl p-6 flex-1 card-hover backdrop-blur-sm">
+      <div class="flex items-center space-x-3 mb-4">
+       <div class="bg-gradient-to-br from-[#B1FD28] to-[#22C55E] text-black rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm shadow-lg shadow-[#B1FD28]/30">
+        <i class="fas fa-chart-bar"></i>
+       </div>
+       <h4 class="text-white font-bold text-base" style="font-family: 'Urbanist', sans-serif;">
+        Track Metrics
+       </h4>
+      </div>
+      <p class="text-[#CBD5E1] text-sm leading-relaxed">
+       Monitor your sustainability data and get instant insights on your environmental performance with real-time analytics.
+      </p>
+     </div>
+     <div class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] rounded-xl p-6 flex-1 card-hover backdrop-blur-sm">
+      <div class="flex items-center space-x-3 mb-4">
+       <div class="bg-gradient-to-br from-[#B1FD28] to-[#22C55E] text-black rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm shadow-lg shadow-[#B1FD28]/30">
+        <i class="fas fa-cloud-sun"></i>
+       </div>
+       <h4 class="text-white font-bold text-base" style="font-family: 'Urbanist', sans-serif;">
+        Carbon Insights
+       </h4>
+      </div>
+      <p class="text-[#CBD5E1] text-sm leading-relaxed">
+       Receive AI-powered insights to optimize your carbon footprint and enhance sustainability impact with actionable recommendations.
+      </p>
+     </div>
+     <div class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] rounded-xl p-6 flex-1 card-hover backdrop-blur-sm">
+      <div class="flex items-center space-x-3 mb-4">
+       <div class="bg-gradient-to-br from-[#B1FD28] to-[#22C55E] text-black rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm shadow-lg shadow-[#B1FD28]/30">
+        <!-- <i class="fas fa-file-chart-line"></i> -->
+          <i class="fas fa-rocket mr-2"></i>
+       </div>
+       <h4 class="text-white font-bold text-base" style="font-family: 'Urbanist', sans-serif;">
+        Impact Reports
+       </h4>
+      </div>
+      <p class="text-[#CBD5E1] text-sm leading-relaxed">
+       Use AI suggestions to refine your sustainability strategies and maximize environmental impact with comprehensive analytics.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="mt-20 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+
+    <div class="flex flex-col md:flex-col-2 md:space-x-6 md:space-y-6 md:items-start">
+        <div class="flex flex-row gap-4 mb-6 md:mb-0  mx-auto mt-10">
+              <img alt="Photo of sustainable growth and green innovation representing environmental progress" class="w-48 hidden md:block rounded-lg mx-auto shadow-lg" height="160" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80&auto=format&fit=crop" width="160"/>
+              <div class="bg-[#3a3a3a] rounded-lg p-5 mt-4 md:mt-0 md:flex md:flex-col md:justify-center">
+                <p class="text-white font-bold text-3xl">
+                85+
+                </p>
+                <p class="text-white/70 uppercase text-xs mt-1">
+                Sustainability initiatives
+                </p>
+              </div>
+        </div>
+
+          <div>
+          <img alt="Sustainable technology visualization with green energy indicators" src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80&auto=format&fit=crop" class="sm:mt-6 rounded-lg shadow-lg">
+          </div>
+    </div>
+
+    <div class="rounded-lg md:px-10 py-10 flex flex-col justify-center">
+     <div class="flex items-center gap-3 mb-4">
+      <i class="fas fa-bullseye text-[#B1FD28] text-4xl"></i>
+      <h3 class="text-white font-extrabold text-3xl md:text-5xl mb-2" style="font-family: 'Urbanist', sans-serif;">
+       OUR
+       <span class="greensync-gradient">
+        MISSION
+       </span>
+      </h3>
+     </div>
+     <p class="text-[#CBD5E1] text-base sm:text-lg mb-8 leading-relaxed">
+      <i class="fas fa-shield-alt text-[#B1FD28] mr-2"></i>
+      Protect &amp;
+      <span class="text-[#B1FD28] font-bold">
+       empower
+      </span>
+      organizations and communities to achieve
+      <span class="text-[#B1FD28] font-bold">
+       net-zero
+      </span>
+      goals through data-driven sustainability.
+     </p>
+     <div class="flex flex-col space-y-4">
+      <button class="border-2 border-[#B1FD28] text-white rounded-full py-4 px-6 text-base font-bold hover:bg-[#B1FD28]/10 hover:border-[#C4FE4F] transition-all flex items-center justify-center gap-3">
+       <i class="fas fa-chart-line text-[#B1FD28]"></i>Carbon Tracking
+      </button>
+      <button class="border-2 border-[#B1FD28] text-white rounded-full py-4 px-6 text-base font-bold hover:bg-[#B1FD28]/10 hover:border-[#C4FE4F] transition-all flex items-center justify-center gap-3">
+       <i class="fas fa-solar-panel text-[#B1FD28]"></i>Renewable Energy
+      </button>
+      <button class="border-2 border-[#B1FD28] text-white rounded-full py-4 px-6 text-base font-bold hover:bg-[#B1FD28]/10 hover:border-[#C4FE4F] transition-all flex items-center justify-center gap-3">
+       <i class="fas fa-users text-[#B1FD28]"></i>Community Impact
+      </button>
+      <button class="border-2 border-[#B1FD28] text-white rounded-full py-4 px-6 text-base font-bold hover:bg-[#B1FD28]/10 hover:border-[#C4FE4F] transition-all flex items-center justify-center gap-3">
+       <i class="fas fa-recycle text-[#B1FD28]"></i>Waste Reduction
+      </button>
+     </div>
+    </div>
+
+    </section>
+    
+    <section class="mt-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col md:items-center md:justify-center space-y-6">
+        <form class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] py-10 rounded-2xl p-6 w-full max-w-7xl shadow-xl shadow-[#B1FD28]/10">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fas fa-file-upload text-[#B1FD28] text-2xl"></i>
+            <h3 class="text-white font-bold text-lg" style="font-family: 'Urbanist', sans-serif;">
+            Submit
+            <span class="greensync-gradient">
+              Metrics
+            </span>
+            </h3>
+          </div>
+          <p class="text-[#CBD5E1] py-4 mb-6 text-sm leading-relaxed">
+          <i class="fas fa-lightbulb text-[#B1FD28] mr-2"></i>
+          Describe your sustainability challenge — we'll provide data-driven insights and actionable recommendations.
+          </p>
+          <label class="text-[#CBD5E1] text-xs font-bold mb-2 flex items-center gap-2" for="crop">
+          <i class="fas fa-list text-[#B1FD28]"></i>Category
+          </label>
+          <select class="w-full rounded-lg bg-[#0F172A] border border-[#334155] text-white text-sm py-3 px-4 mt-1 mb-5 focus:outline-none focus:ring-2 focus:ring-[#B1FD28] focus:border-[#B1FD28] transition-all" id="crop" name="crop">
+          <option value="Carbon Footprint">🌍 Carbon Footprint</option>
+          <option value="Renewable Energy">☀️ Renewable Energy</option>
+          <option value="Waste Management">♻️ Waste Management</option>
+          <option value="Water Conservation">💧 Water Conservation</option>
+          </select>
+          <label class="text-[#CBD5E1] text-xs font-bold mb-2 flex items-center gap-2" for="issue">
+          <i class="fas fa-question-circle text-[#B1FD28]"></i>What sustainability challenge are you facing?
+          </label>
+          <textarea class="w-full py-4 rounded-lg bg-[#0F172A] border border-[#334155] text-white text-sm py-3 px-4 mt-1 mb-5 resize-none focus:outline-none focus:ring-2 focus:ring-[#B1FD28] focus:border-[#B1FD28] transition-all" id="issue" name="issue" rows="4" placeholder="Describe your environmental challenge..."></textarea>
+          <label class="text-[#CBD5E1] text-xs font-bold mb-2 flex items-center gap-2" for="location">
+          <i class="fas fa-map-marker-alt text-[#B1FD28]"></i>Where is your organization located?
+          </label>
+          <input class="w-full rounded-lg bg-[#0F172A] border border-[#334155] text-white text-sm py-3 px-4 mt-1 mb-6 focus:outline-none focus:ring-2 focus:ring-[#B1FD28] focus:border-[#B1FD28] transition-all" id="location" name="location" type="text" placeholder="Enter your location..."/>
+          <button class="w-full bg-gradient-to-r from-[#B1FD28] to-[#22C55E] text-black font-bold rounded-lg py-3 text-sm hover:from-[#C4FE4F] hover:to-[#34D399] shadow-lg shadow-[#B1FD28]/25 hover:shadow-[#B1FD28]/40 transition-all flex items-center justify-center gap-2" type="submit">
+          <i class="fas fa-chart-line"></i>ANALYZE METRICS
+          </button>
+        </form>
+        </div>
+        
+          <img alt="Illustration of sustainability professional analyzing environmental data with eco-technology" class="absolute top-0 left-0 object-cover rounded-lg relative w-72 h-auto mx-auto shadow-xl" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop"/>
+    </section>
+
+   </section>
+   <section class="mt-20 max-w-7xl h-auto mx-auto bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 p-8 shadow-xl">
+    <div class="flex-1 max-w-5xl">
+     <div class="flex items-center gap-3 mb-3">
+      <i class="fas fa-newspaper text-[#B1FD28] text-3xl"></i>
+      <h3 class="text-white font-extrabold py-2 md:text-3xl" style="font-family: 'Urbanist', sans-serif;">
+      Stay Updated with Our
+      <br/>
+      Latest
+      <span class="greensync-gradient">
+       Impact Reports
+      </span>
+     </h3>
+     </div>
+     <p class="text-[#CBD5E1] text-sm sm:text-base mt-3 mb-4">Real-time sustainability analytics and environmental insights to track your progress.</p>
+     <a href="dashboard.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#B1FD28] to-[#22C55E] text-black font-bold rounded-full px-6 py-2.5 text-xs hover:from-[#C4FE4F] hover:to-[#34D399] shadow-lg shadow-[#B1FD28]/25 hover:shadow-[#B1FD28]/40 transition-all">
+      <i class="fas fa-arrow-right"></i>View All Reports
+     </a>
+      
+
+    </div>
+    <div class="flex-1 max-w-sm">
+     <img alt="Photo of renewable energy infrastructure with green technology and sustainable environment" class="rounded-lg hidden md:block w-full h-48 object-cover shadow-xl" height="160" src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80&auto=format&fit=crop" width="320"/>
+    </div>
+   </section>
+
+   
+   <section class="mt-20 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-4">
+    <div>
+      <img alt="Photo of a professional in a sustainable workspace with eco-friendly environment" class="rounded-lg w-full md:h-56 object-cover shadow-lg" height="160" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80&auto=format&fit=crop" width="320"/>
+    </div>
+    <div class="bg-gradient-to-br from-[#1E293B]/80 to-[#0F172A] border border-[#334155] rounded-xl p-6 flex flex-col justify-center backdrop-blur-sm">
+     <div class="flex items-center gap-3 mb-3">
+      <i class="fas fa-rocket text-[#B1FD28] text-2xl"></i>
+      <p class="text-white font-extrabold text-4xl" style="font-family: 'Urbanist', sans-serif;">
+      15+
+     </p>
+     </div>
+     <p class="text-[#CBD5E1] uppercase text-xs font-bold mt-1 mb-2 tracking-wider">
+      Sustainability Initiatives
+     </p>
+     <p class="text-[#CBD5E1] text-xs leading-relaxed">
+      With 15+ initiatives, we have pioneered advancements in climate technology, helping organizations reduce carbon emissions by 40%
+     </p>
+    </div>
+    <div>
+     <img alt="Closeup photo of sustainable ecosystem with green plant growth and natural environment" class="rounded-lg w-full h-56 object-cover shadow-lg" height="160" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80&auto=format&fit=crop" width="320"/>
+    </div>
+    <div class="bg-gradient-to-br from-[#B1FD28] to-[#22C55E] rounded-xl p-6 flex flex-col justify-center shadow-lg shadow-[#B1FD28]/30">
+     <div class="flex items-center gap-3 mb-3">
+      <i class="fas fa-trophy text-black text-2xl"></i>
+      <p class="text-black font-extrabold text-4xl" style="font-family: 'Urbanist', sans-serif;">
+      92+
+     </p>
+     </div>
+     <p class="text-black uppercase text-xs font-bold mt-1 mb-2 tracking-wider">
+      Impact Achievement Rate
+     </p>
+     <p class="text-black/90 text-xs leading-relaxed">
+      With an 92% impact achievement rate, our organizations trust us to deliver valuable insights and support that enables them to work smarter and achieve net-zero goals.
+     </p>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-[#1A1A1A] mt-20 py-10">
+   <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col md:flex-row justify-between text-white/70 text-xs space-y-6 md:space-y-0">
+    <div class="flex flex-col space-y-3 max-w-xs">
+     <div class="flex items-center space-x-3 mb-2">
+      <i class="fas fa-leaf text-[#B1FD28] text-xl"></i>
+      <span class="font-bold text-white text-base tracking-tight" style="font-family: 'Urbanist', sans-serif;">
+      GreenSync
+      </span>
+     </div>
+     <p class="text-[#CBD5E1] text-xs leading-relaxed">
+      <i class="fas fa-quote-left text-[#B1FD28] mr-1"></i>
+      Empowering sustainable change through data-driven insights.
+     </p>
+     <p class="text-[#94A3B8] text-xs">
+      © 2025 GreenSync — All Rights Reserved.
+     </p>
+     <p class="text-[#CBD5E1] text-xs leading-relaxed">
+      <i class="fas fa-brain text-[#B1FD28] mr-1"></i>
+      AI-powered sustainability intelligence for a cleaner, smarter planet.
+     </p>
+     <p class="text-[#CBD5E1] text-xs leading-relaxed">
+                <i class="fas fa-rocket text-[#B1FD28]  mr-2"></i>
+      <!-- <i class="fas fa-brain text-[#B1FD28] mr-1"></i> -->
+      Developed By Daniel Oyati.
+     </p>
+    </div>
+    <div class="flex space-x-12">
+     <div>
+      <h4 class="font-bold text-white mb-4 flex items-center gap-2" style="font-family: 'Urbanist', sans-serif;">
+       <i class="fas fa-cube text-[#B1FD28]"></i>Products
+      </h4>
+      <ul class="space-y-2.5">
+       <li>
+        <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-2 text-xs" href="index.html">
+         <i class="fas fa-home text-xs"></i>Home
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-2 text-xs" href="dashboard.html">
+         <i class="fas fa-chart-line text-xs"></i>Dashboard
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-2 text-xs" href="about.html">
+         <i class="fas fa-info-circle text-xs"></i>About Us
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="font-bold text-white mb-4 flex items-center gap-2" style="font-family: 'Urbanist', sans-serif;">
+       <i class="fas fa-book text-[#B1FD28]"></i>Resources
+      </h4>
+      <ul class="space-y-2.5">
+       <li>
+        <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-2 text-xs" href="about.html">
+         <i class="fas fa-info-circle text-xs"></i>About Us
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-2 text-xs" href="#">
+         <i class="fas fa-envelope text-xs"></i>Contact
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-2 text-xs" href="#">
+         <i class="fas fa-headset text-xs"></i>Support
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-[#B1FD28] transition-colors flex items-center gap-2 text-xs" href="#">
+         <i class="fas fa-question-circle text-xs"></i>FAQs
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+ </body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn about GreenSync - Empowering sustainable change through data-driven insights. AI-powered sustainability intelligence for a cleaner, smarter planet."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>"
+    />
+    <title>About | GreenSync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Urbanist:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --greensync-primary: #b1fd28;
+        --greensync-primary-dark: #8fd820;
+        --greensync-primary-light: #c4fe4f;
+        --greensync-accent: #22c55e;
+        --greensync-bg-dark: #0f172a;
+        --greensync-bg-card: #1e293b;
+        --greensync-text-primary: #f8fafc;
+        --greensync-text-secondary: #cbd5e1;
+      }
+
+      body {
+        font-family: 'Inter', 'Urbanist', sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      }
+
+      .greensync-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--greensync-primary) 0%,
+          var(--greensync-accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(177, 253, 40, 0.15);
+      }
+
+      .hamburger {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        transition: all 0.25s;
+        position: relative;
+      }
+
+      .hamburger-top,
+      .hamburger-middle,
+      .hamburger-bottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background: white;
+        border-radius: 2%;
+        transform: rotate(0);
+        transition: all 0.5s;
+      }
+
+      .hamburger-middle {
+        transform: translateY(7px);
+      }
+
+      .hamburger-bottom {
+        transform: translateY(14px);
+      }
+
+      .open {
+        transform: rotate(90deg);
+        transform: translateY(0px);
+      }
+
+      .open .hamburger-top {
+        transform: rotate(45deg) translateY(6px) translate(6px);
+      }
+
+      .open .hamburger-middle {
+        display: none;
+      }
+
+      .open .hamburger-bottom {
+        transform: rotate(-45deg) translateY(6px) translate(-6px);
+      }
+    </style>
+  </head>
+  <body class="bg-[#1B1F1A] text-white">
+    <header
+      class="max-w-7xl mx-auto px-6 sm:px-10 py-6 flex items-center justify-between"
+    >
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-leaf text-[#B1FD28] text-2xl"></i>
+        <span
+          class="text-white font-bold text-xl tracking-tight"
+          style="font-family: 'Urbanist', sans-serif"
+          >GreenSync</span
+        >
+      </div>
+      <nav
+        class="bg-[#1E293B] backdrop-blur-sm md:block hidden p-4 max-w-md px-10 border border-[#334155] rounded-full shadow-lg"
+      >
+        <ul class="hidden md:flex space-x-10 font-medium text-sm text-white/80">
+          <li>
+            <a
+              class="hover:text-[#B1FD28] transition-colors flex items-center gap-1"
+              href="index.html"
+            >
+              <i class="fas fa-home text-xs"></i> Home
+            </a>
+          </li>
+          <li>
+            <a
+              class="hover:text-[#B1FD28] transition-colors flex items-center gap-1"
+              href="dashboard.html"
+            >
+              <i class="fas fa-chart-line text-xs"></i> Dashboard
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button
+        id="menu-btn"
+        class="block md:hidden hamburger focus:outline-none ml-auto"
+      >
+        <span class="hamburger-top"></span>
+        <span class="hamburger-middle"></span>
+        <span class="hamburger-bottom"></span>
+      </button>
+
+      <div class="md:hidden">
+        <div
+          id="menu"
+          class="absolute right-6 top-20 flex-col hidden items-end bg-white text-black py-8 px-6 space-y-6 rounded-lg shadow-lg z-50"
+        >
+          <a class="hover:text-[#B1FD28]" href="index.html">Home</a>
+          <a class="hover:text-[#B1FD28]" href="dashboard.html">Dashboard</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 sm:px-10 py-16">
+      <div class="flex items-center gap-3 mb-6">
+        <i class="fas fa-seedling text-[#B1FD28] text-4xl"></i>
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight"
+          style="font-family: 'Urbanist', sans-serif"
+        >
+          Empowering Sustainable
+          <br />
+          <span class="greensync-gradient">Change Through Data</span>
+        </h1>
+      </div>
+      <p
+        class="text-[#CBD5E1] text-base sm:text-lg leading-relaxed max-w-3xl mb-10"
+      >
+        <i class="fas fa-leaf text-[#B1FD28] mr-2"></i>
+        <strong class="text-white">GreenSync</strong> is a digital platform
+        designed to connect, support, and empower organizations and communities
+        using smart, accessible ClimateTech. With the help of AI, we provide
+        instant sustainability insights, track environmental metrics, and offer
+        a real-time chat feature that brings eco-innovators together — all
+        without the need for a complex backend.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div
+          class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-6 rounded-xl shadow-lg shadow-[#B1FD28]/10 card-hover"
+        >
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fas fa-bullseye text-[#B1FD28] text-2xl"></i>
+            <h3
+              class="text-xl font-bold text-white"
+              style="font-family: 'Urbanist', sans-serif"
+            >
+              Our Mission
+            </h3>
+          </div>
+          <p class="text-[#CBD5E1] text-sm leading-relaxed">
+            We aim to reduce environmental impact and accelerate net-zero goals
+            by empowering organizations with AI-driven sustainability tools,
+            accurate environmental metrics, and collaborative community support.
+          </p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-6 rounded-xl shadow-lg shadow-[#B1FD28]/10 card-hover"
+        >
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fas fa-brain text-[#B1FD28] text-2xl"></i>
+            <h3
+              class="text-xl font-bold text-white"
+              style="font-family: 'Urbanist', sans-serif"
+            >
+              Powered by AI
+            </h3>
+          </div>
+          <p class="text-[#CBD5E1] text-sm leading-relaxed">
+            Through the Gemini AI API, GreenSync generates smart, step-by-step
+            sustainability recommendations based on real-time environmental
+            data. It's actionable, personalized, and intelligent.
+          </p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-6 rounded-xl shadow-lg shadow-[#B1FD28]/10 card-hover"
+        >
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fas fa-chart-area text-[#B1FD28] text-2xl"></i>
+            <h3
+              class="text-xl font-bold text-white"
+              style="font-family: 'Urbanist', sans-serif"
+            >
+              Live Sustainability Metrics
+            </h3>
+          </div>
+          <p class="text-[#CBD5E1] text-sm leading-relaxed">
+            Our Sustainability Metrics widget provides up-to-date environmental
+            snapshots — enabling smarter decisions, better planning, and
+            measurable impact tracking.
+          </p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-6 rounded-xl shadow-lg shadow-[#B1FD28]/10 card-hover"
+        >
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fas fa-robot text-[#B1FD28] text-2xl"></i>
+            <h3
+              class="text-xl font-bold text-white"
+              style="font-family: 'Urbanist', sans-serif"
+            >
+              EcoBot Community Chat
+            </h3>
+          </div>
+          <p class="text-[#CBD5E1] text-sm leading-relaxed">
+            Our real-time EcoBot chat feature allows organizations to connect,
+            share sustainability challenges, and build a digital community of
+            eco-innovators — right from the dashboard.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="mt-16 bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-8 rounded-2xl shadow-xl shadow-[#B1FD28]/10"
+      >
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-globe-americas text-[#B1FD28] text-3xl"></i>
+          <h2
+            class="text-3xl font-extrabold text-white"
+            style="font-family: 'Urbanist', sans-serif"
+          >
+            Built for Environmental Impact
+          </h2>
+        </div>
+        <p
+          class="text-[#CBD5E1] leading-relaxed text-base sm:text-lg max-w-3xl"
+        >
+          <i class="fas fa-check-circle text-[#B1FD28] mr-2"></i>
+          Whether you're a startup in Silicon Valley or a community organization
+          in Lagos, GreenSync was built with you in mind. No logins, no hassle —
+          just pure, impactful ClimateTech that works for a sustainable future.
+        </p>
+      </div>
+    </main>
+
+    <footer class="bg-[#0F172A] border-t border-[#334155] mt-20 py-10">
+      <div
+        class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col md:flex-row justify-between text-white/70 text-xs space-y-6 md:space-y-0"
+      >
+        <div class="flex flex-col space-y-3">
+          <div class="flex items-center space-x-3 mb-2">
+            <i class="fas fa-leaf text-[#B1FD28] text-xl"></i>
+            <p
+              class="font-bold text-white text-base tracking-tight"
+              style="font-family: 'Urbanist', sans-serif"
+            >
+              GreenSync
+            </p>
+          </div>
+          <p class="text-[#94A3B8]">
+            © 2025. Built By Daniel Oyati. All rights reserved.
+          </p>
+          <p class="text-[#CBD5E1] text-xs leading-relaxed">
+            <i class="fas fa-quote-left text-[#B1FD28] mr-1"></i>
+            Empowering sustainable change through data-driven insights.
+          </p>
+        </div>
+        <div class="flex space-x-8 items-start">
+          <div>
+            <h4
+              class="font-bold text-white mb-3 text-sm flex items-center gap-2"
+            >
+              <i class="fas fa-link text-[#B1FD28]"></i>Quick Links
+            </h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="index.html"
+                  class="hover:text-[#B1FD28] transition-colors flex items-center gap-2"
+                  ><i class="fas fa-home text-xs"></i>Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dashboard.html"
+                  class="hover:text-[#B1FD28] transition-colors flex items-center gap-2"
+                  ><i class="fas fa-chart-line text-xs"></i>Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  href="about.html"
+                  class="hover:text-[#B1FD28] transition-colors flex items-center gap-2"
+                  ><i class="fas fa-info-circle text-xs"></i>About</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
